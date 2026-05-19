@@ -1,0 +1,32 @@
+name: Keep Streamlit App Awake
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+jobs:
+  keep-awake:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install chromium
+
+      - name: Visit Streamlit app
+        env:
+          STREAMLIT_URL: https://lytlerushcalculator.streamlit.app/
+          HEADLESS: "true"
+          VISIT_SECONDS: "60"
+        run: python keep_awake.py
