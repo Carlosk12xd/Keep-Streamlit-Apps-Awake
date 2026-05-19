@@ -1,8 +1,9 @@
-name: Keep Streamlit App Awake
+name: Keep Streamlit Apps Awake
 
 on:
   workflow_dispatch:
   schedule:
+    # Every 6 hours.
     - cron: "17 */6 * * *"
 
 jobs:
@@ -24,9 +25,13 @@ jobs:
           pip install -r requirements.txt
           playwright install chromium
 
-      - name: Visit Streamlit app
+      - name: Visit Streamlit apps
         env:
-          STREAMLIT_URL: https://lytlerushcalculator.streamlit.app/
           HEADLESS: "true"
           VISIT_SECONDS: "60"
+          BETWEEN_APPS_SECONDS: "10"
+          STREAMLIT_URLS: |
+            https://lytlerushcalculator.streamlit.app/
+            https://quantanalysisck.streamlit.app/
+            https://exceltopdfck.streamlit.app/
         run: python keep_awake.py
