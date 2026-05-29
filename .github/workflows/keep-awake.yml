@@ -34,4 +34,5 @@ jobs:
             https://lytlerushcalculator.streamlit.app/
             https://quantanalysisck.streamlit.app/
             https://exceltopdfck.streamlit.app/
+            https://youtubedlck.streamlit.app/
         run: python keep_awake.py
