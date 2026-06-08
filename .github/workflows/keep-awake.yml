@@ -35,4 +35,5 @@ jobs:
             https://quantanalysisck.streamlit.app/
             https://exceltopdfck.streamlit.app/
             https://youtubedlck.streamlit.app/
+            https://quinncia-apper-yb5wbnwdytf6avrcjpmeew.streamlit.app/
         run: python keep_awake.py
